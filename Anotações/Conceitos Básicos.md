@@ -15,6 +15,7 @@ Assim, um banco de dados tem **alguma fonte de origem para suas informações**,
 Para que um banco de dados seja preciso e confiável o tempo todo, **ele precisa ser um reflexo verdadeiro do minimundo que representa**; para isso, as mudanças decorrentes de eventos no mundo real precisam ser refletidas no banco de dados o mais breve possível.
 
 Bancos de dados podem ser gerados e mantidos manualmente (como uma [lista telefônica](https://pt.wikipedia.org/wiki/Lista_telef%C3%B4nica#:~:text=Lista%20telef%C3%B4nica(pt-BR)%20ou%20lista%20telef%C3%B3nica(pt)%20%C3%A9%20uma%20publica%C3%A7%C3%A3o%20destinada%20%C3%A0)), ou podem ser computadorizados (com a utilização de um Sistema Gerenciador de Bancos de Dados) e automatizados via software.
+
 ### E um Sistema Gerenciador de Bancos de Dados (SGBD)?
 É uma coleção de programas que permite ao usuário criar e manter um banco de dados. O propósito desse software é facilitar os processos de **definição, construção, manipulação e compartilhamento** de bancos de dados entre várias aplicações e usuários. Outras funções de um SGBD incluem: **proteção do banco de dados** (contra falhas de hardware ou software, e também contra acesso não autorizado/malicioso) e **manutenção**.
 
@@ -29,6 +30,13 @@ Um SGBD pode ser de uso geral (os comercializados, como: ([MySQL](https://www.my
   Podemos simplificar a maioria das operações de manipulação na sigla **CRUD** (do inglês: *Create, Read, Update, Delete*).
   
 - O compartilhamento de um banco de dados permite que diversos usuários e programas acessem-no simultaneamente.
+
+## Aplicações de bancos de dados
+Bancos de dados podem ser utilizados desde em sistemas comerciais tradicionais, a aplicações mais complexas envolvendo conteúdo multimídia ou de teor geográfico (dados de satélites, por exemplo). Existem também bancos de dados direcionados especificamente para o armazenamento e consulta de grandes volumes de informação (*Big Data*), geralmente tratados com o uso de modelos de dados não-relacionais.
+
+Além disso, bancos de dados também podem ser utilizados em sistemas envolvendo *data warehouses* (armazéns de dados) e processamento analítico online (OLAP), onde, geralmente, faz-se uso de técnicas de mineração de dados para retirada de análises importantes daquele repositório de dados brutos.
+
+Bancos de dados, assim como citado anteriormente, podem ser usados para o processo de mineração de dados, mas também em outras áreas, como recuperação de informação, análise de sentimentos, ciência de dados, etc.
 
 ### Sistema de Banco de Dados
 Refere-se ao **conjunto completo** que inclui tanto o **SGBD** quanto o **banco de dados** (dados e suas estruturas) em si. 
