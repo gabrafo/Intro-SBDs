@@ -14,10 +14,10 @@ Este repositório é dedicado à disciplina GCC 263 - Introdução a Sistemas de
 - **Livro Texto**: Elmasri, R., & Navathe, S. B. (6ª edição). *Sistemas de Banco de Dados*.
 
 ## Estrutura do Repositório
-├── Anexo
-│   └── Imagens das anotações
-└── Anotações
-    └── Anotações Markdown
+├── Anexo<br>
+│   └── Imagens das anotações<br>
+└── Anotações<br>
+    └── Anotações Markdown<br>
 
 ## Contribuições
 
