@@ -31,7 +31,7 @@ Um SGBD pode ser de uso geral (os comercializados, como: ([MySQL](https://www.my
   
 - O compartilhamento de um banco de dados permite que diversos usuários e programas acessem-no simultaneamente.
 
-## Aplicações de bancos de dados
+### Aplicações de bancos de dados
 Bancos de dados podem ser utilizados desde em sistemas comerciais tradicionais, a aplicações mais complexas envolvendo conteúdo multimídia ou de teor geográfico (dados de satélites, por exemplo). Existem também bancos de dados direcionados especificamente para o armazenamento e consulta de grandes volumes de informação (*Big Data*), geralmente tratados com o uso de modelos de dados não-relacionais.
 
 Além disso, bancos de dados também podem ser utilizados em sistemas envolvendo *data warehouses* (armazéns de dados) e processamento analítico online (OLAP), onde, geralmente, faz-se uso de técnicas de mineração de dados para retirada de análises importantes daquele repositório de dados brutos.
@@ -47,8 +47,11 @@ Refere-se ao **conjunto completo** que inclui tanto o **SGBD** quanto o **banco 
 - Processamento de arquivo (tradicional): cada usuário define e implementa os arquivos necessários para uma aplicação de software específica como parte da programação da aplicação.
 
   **Exemplo**: Em um hospital, a secretária e o médico podem ter necessidades diferentes em relação aos dados dos pacientes, levando à criação de arquivos separados.
+  
   **Secretária**: Ela pode precisar de informações como nome, contatos de emergência e endereço do paciente para agendar consultas e fazer follow-ups. Portanto, ela mantém um arquivo específico com esses dados, por exemplo, "dados_contato_paciente.txt".
+  
   **Médico**: Por outro lado, o médico pode estar mais interessado em informações clínicas, como tipo sanguíneo, peso e histórico médico do paciente. Ele pode criar um arquivo separado, chamado "dados_clinicos_paciente.txt", para armazenar essas informações.
+  
   Essa situação geraria uma redundância, causando desperdício de espaço de armazenamento e em esforços para manter os dados comuns entre ambos os usuários atualizados.
 
 - Banco de dados: na abordagem de banco de dados, um único repositório mantém dados que são definidos uma vez e depois acessados por vários usuários. 
