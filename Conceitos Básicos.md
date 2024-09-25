@@ -33,7 +33,7 @@ Um SGBD pode ser de uso geral (os comercializados, como: ([MySQL](https://www.my
 ### Sistema de Banco de Dados
 Refere-se ao **conjunto completo** que inclui tanto o **SGBD** quanto o **banco de dados** (dados e suas estruturas) em si. 
 
-[Imagem 1](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%201.png)
+[[Anexo/Imagem 1.png]]
 
 ### Diferenças entre abordagem: processamento de arquivo x banco de dados
 - Processamento de arquivo (tradicional): cada usuário define e implementa os arquivos necessários para uma aplicação de software específica como parte da programação da aplicação.
