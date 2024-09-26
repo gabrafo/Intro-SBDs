@@ -111,7 +111,7 @@ SELECT calculaIdade('2015-06-01');
 ```
 
 ### Visões de dados
-Uma visão (ou *view*) pode ser um subconjunto do banco de dados ou conter **dados virtuais** que são derivados dos arquivos do banco de dados, mas não estão armazenados explicitamente. Alguns usuários não precisam saber se os dados a que se referem estão armazenados ou se são derivados.
+Uma visão (ou *view*) pode ser um **subconjunto do banco de dados** ou conter **dados virtuais** que são derivados dos arquivos do banco de dados, mas não estão armazenados explicitamente. Alguns usuários não precisam saber se os dados a que se referem estão armazenados ou se são derivados.
 
 ### Processamento de transações
 Em um SGBD com vários usuários, é provável que hajam múltiplos acessos ao banco de dados ao mesmo tempo. O SGBD precisa incluir um **software de controle de concorrência** para garantir que vários usuários tentando atualizar o mesmo dado façam isso de uma maneira controlada e segura para a integridade da informação consultada. 
