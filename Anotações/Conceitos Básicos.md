@@ -110,4 +110,17 @@ Os cifrões (`$$`) acima representam a delimitação de início/fim do corpo da 
 SELECT calculaIdade('2015-06-01');
 ```
 
+### Visões de dados
+Uma visão (ou *view*) pode ser um subconjunto do banco de dados ou conter **dados virtuais** que são derivados dos arquivos do banco de dados, mas não estão armazenados explicitamente. Alguns usuários não precisam saber se os dados a que se referem estão armazenados ou se são derivados.
 
+### Processamento de transações
+Em um SGBD com vários usuários, é provável que hajam múltiplos acessos ao banco de dados ao mesmo tempo. O SGBD precisa incluir um **software de controle de concorrência** para garantir que vários usuários tentando atualizar o mesmo dado façam isso de uma maneira controlada e segura para a integridade da informação consultada. 
+
+Aplicativos com essa função geralmente são chamados de **aplicações de processamento de transação online** (***OLTP*** - *Online Transaction Processing*).
+
+#### O que são transações?
+**Uma transação é um programa em execução ou processo que inclui um ou mais acessos ao banco de dados.** Nesse sentido, uma transação só executa um acesso logicamente correto a um banco de dados quando ela é **executada de forma completa** e **sem interferência de outras transações**.
+
+Propriedades de uma transação:
+- **Isolamento**: Garante que cada transação pareça executar isoladamente das demais, mesmo que centenas de transações possam estar executando concorrentemente.
+- **Atomicidade**: Garante que todas as operações em uma transação sejam executadas ou que nenhuma seja (em caso de falha de alguma delas).
