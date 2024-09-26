@@ -121,6 +121,6 @@ Aplicativos com essa função geralmente são chamados de **aplicações de proc
 #### O que são transações?
 **Uma transação é um programa em execução ou processo que inclui um ou mais acessos ao banco de dados.** Nesse sentido, uma transação só executa um acesso logicamente correto a um banco de dados quando ela é **executada de forma completa** e **sem interferência de outras transações**.
 
-Propriedades de uma transação:
+Algumas das propriedades de uma transação:
 - **Isolamento**: Garante que cada transação pareça executar isoladamente das demais, mesmo que centenas de transações possam estar executando concorrentemente.
 - **Atomicidade**: Garante que todas as operações em uma transação sejam executadas ou que nenhuma seja (em caso de falha de alguma delas).
