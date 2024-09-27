@@ -43,6 +43,17 @@ Refere-se ao **conjunto completo** que inclui tanto o **SGBD** quanto o **banco 
 
 ![Imagem 1](https://github.com/gabrafo/Intro-SBDs/blob/7b5bfc1a92409b45988bef37608ce7cb33f754df/Anexo/Imagem%201.png)
 
+### Alguns dos profissionais envolvidos na manutenção de um BD
+- Administrador de BD: 
+  Em um ambiente de banco de dados, o recurso principal é o próprio banco de dados, e o recurso secundário é o SGBD e os softwares relacionados. A **administração desses recursos é de responsabilidade do administrador de banco de dados** (**DBA** - *database administrator*).
+  Nesse sentido, o DBA é responsável por **autorizar o acesso ao banco de dados**, **coordenar e monitorar seu uso** e **adquirir recursos de software e hardware conforme a necessidade** (lidar com **escalabilidade**).
+  
+- Projetista de BD:
+  Os projetistas de banco de dados são responsáveis por **identificar os dados a serem armazenados** e **escolher estruturas apropriadas para representar e armazenar esses dados**. Geralmente, essas tarefas são realizadas **antes que o banco de dados esteja implementado e populado com dados**. Além disso, uma de suas principais funções é interagir com cada potencial grupo de usuários e desenvolvem **visões** (*views*) do banco de dados que cumprem os requisitos de dados e processamento desses grupos.
+  Após a conclusão do projeto do BD, os projetistas passam a compor outra equipe (como a dos DBAs, por exemplo).
+  
+Lembrando, esses são apenas **alguns** dos profissionais envolvidos nesse processo.
+
 ### Diferenças entre abordagem: processamento de arquivo x banco de dados
 - Processamento de arquivo (tradicional): cada usuário define e implementa os arquivos necessários para uma aplicação de software específica como parte da programação da aplicação.
 
@@ -57,6 +68,45 @@ Refere-se ao **conjunto completo** que inclui tanto o **SGBD** quanto o **banco 
 - Banco de dados: na abordagem de banco de dados, um único repositório mantém dados que são definidos uma vez e depois acessados por vários usuários. 
   
   **Exemplo**: No sistema hospitalar mencionado acima, ambos os usuários (a secretária e o médico) acessariam o mesmo repositório de dados, buscando os dados que os interessam sobre aquele mesmo paciente. Isso, obviamente, tiraria um pouco da liberdade de nomear os elementos de dados, mas traria consequências positivas no que se diz respeito a facilidade de organização.
+
+#### Vantagens de usar a abordagem de SGBD
+- Controle de redundância
+  Ao utilizar a abordagem de processamento de arquivo, diferentes usuários mantém, muitas vezes, dados duplicados. No exemplo acima, tanto a secretária quanto o médico poderiam manter os mesmos dados básicos do paciente, como nome e endereço, em arquivos separados. Isso resultaria em duplicidade de dados, aumentando a probabilidade de inconsistências (caso o paciente mude de endereço, por exemplo, seria necessário alterar ambas as bases de dados).
+  O ideal é que tenhamos um **projeto que armazena cada item de dados lógico - como o nome ou a data de nascimento de um aluno - em apenas um lugar no banco de dados**. Isso é conhecido como **normalização de dados**, e garante consistência e economia de espaço de armazenamento. 
+  No entanto, na prática, muitas vezes é necessário usar a **redundância controlada** para melhorar o desempenho das consultas. **Colocando todos os dados juntos, não precisamos pesquisar vários arquivos para coletar esses dados**. Isso é conhecido como **desnormalização**. Nesses casos, o SGBD deve ter a capacidade de **controlar essa redundância a fim de proibir inconsistências entre os arquivos**.
+  
+- Restrição de acesso
+  É necessário o controle de acesso, para que diferentes usuários tenham diferentes níveis de permissões. No exemplo hospitalar, a secretária poderia ter permissão apenas para visualizar (ou atualizar) informações de contato, enquanto o médico poderia acessar os dados clínicos confidenciais do paciente. Em um sistema de arquivos tradicional, a implementação de controles de acesso seria muito mais difícil de gerenciar.
+
+- Persistência de dados
+  Os bancos de dados **podem ser usados para oferecer armazenamento persistente para objetos e estruturas de dados** do programa. **Esse é um dos principais motivos para a existência de sistemas de banco de dados orientados a objeto.** Linguagens de programação normalmente possuem estruturas de dados complexas, e que, por padrão, tem os valores atribuídos a elas perdidos com o encerramento da execução do programa.
+  Há a possibilidade de fazer uma conversão desses dados em tempo de execução para arquivos (de texto, binários, etc), no entanto, é cansativo tratar a entrada desses mesmos dados a cada execução do programa, e garantir uma saída normalizada e livre de erros. 
+  Os sistemas de banco de dados orientados a objeto são compatíveis com linguagens de programação, como C++ e Java, e o software de **SGBD realiza automaticamente quaisquer conversões necessárias para o salvamento** de determinado dado. Esse objeto é considerado persistente, pois **sobrevive ao término da execução e pode ser recuperado mais tarde** diretamente por outro programa C++.
+
+- Estruturas de armazenamento e técnicas de pesquisa
+  Para que um Sistema de Gerenciamento de Banco de Dados (SGBD) seja eficiente, ele precisa ser capaz de executar consultas e atualizações rapidamente. Isso é especialmente importante em sistemas grandes e distribuídos, como aqueles hospedados em nuvem. Como os bancos de dados geralmente são armazenados em discos, que possuem latências maiores em comparação à memória principal, o SGBD precisa utilizar **estruturas de dados e técnicas de pesquisa otimizadas** para localizar rapidamente os registros desejados no disco.
+  Geralmente, faz-se uso de arquivos auxiliares (chamados de **índices**). Os índices normalmente são baseados em estruturas de dados em árvore ou estrutura de dados em *hash*, que são modificadas de maneira adequada para a pesquisa no disco.
+  Além disso, como o acesso ao disco é mais lento, o SGBD utiliza um **módulo de buffering ou caching**, que mantém partes dos dados do banco em buffers na memória principal. Isso minimiza a necessidade de buscar informações diretamente do disco, **otimizando a execução de consultas frequentes**. Embora o sistema operacional ofereça seus próprios mecanismos de buffering, muitos SGBDs implementam buffers internos para garantir maior controle sobre o desempenho do banco de dados.
+  O **módulo de processamento e otimização de consulta** do SGBD é **responsável por escolher um plano de execução eficiente para cada consulta**, com base nas estruturas de armazenamento existentes. A escolha de quais índices criar e manter faz parte do **projeto e ajuste de banco de dados físico**, que é uma das responsabilidades da equipe de DBAs.
+  
+- Backup de informações
+  Um SGBD precisa oferecer recursos para **recuperar-se de falhas de hardware ou software**. **Seu subsistema de backup e recuperação é responsável por isso.**
+  Por exemplo, se o sistema do computador falhar no meio de uma transação de atualização complexa, o subsistema de recuperação é responsável por garantir que o banco de dados seja restaurado ao estado em que estava antes da transação ser executada, e, caso outra transação concorrente esteja sendo executada junto a essa, ela deve também ser revertida (com base no princípio da **atomicidade**).
+  
+- Múltiplas interfaces de usuário
+  Como diferentes tipos de usuários, com variados níveis de conhecimento técnico, utilizam o banco de dados, o SGBD deve disponibilizar uma variedade de **interfaces de usuário**. Isso inclui **linguagens de consulta** para usuários casuais, **interfaces de programação** para desenvolvedores de aplicações, e **interfaces gráficas (GUIs)**, como formulários e menus, para usuários que preferem uma interação mais visual e simplificada. Além disso, interfaces de **linguagem natural** podem ser oferecidas para facilitar o uso por usuários isolados. Com a crescente importância da web, muitos SGBDs fornecem recursos para oferecer **interfaces GUI integradas à web**, permitindo que o banco de dados seja acessado e gerenciado diretamente pela internet.
+
+- Representando relacionamentos complexos entre dados
+  Um banco de dados pode conter diversos tipos de dados inter-relacionados de maneiras complexas. Por exemplo, em um ambiente acadêmico, um registro de aluno pode estar relacionado a vários registros de disciplinas, e essas disciplinas, por sua vez, podem estar vinculadas a vários registros de turmas e históricos escolares. O SGBD deve ser capaz de **representar esses relacionamentos complexos** de maneira eficaz, permitindo a **criação de novos relacionamentos conforme necessário**, além de facilitar a **recuperação e atualização de dados relacionados** de forma ágil.
+
+- Restrições de integridade
+  É essencial garantir que os dados armazenados sejam consistentes e reflitam corretamente o minimundo que representam. O SGBD oferece recursos para **definir e impor restrições de integridade** que garantem essa consistência. As restrições mais simples incluem **tipos de dados** (determinando, por exemplo, que a coluna "Idade" só receberá números inteiros). No entanto, para além disso, existem também **restrições de integridade referencial**, que garantem que certos registros estejam relacionados a outros. Assim, não pode haver um registro de turma não relacionado a algum registro de disciplina. Além disso, há as **restrições de unicidade**, que asseguram que certos valores (**chaves**), como o código de uma disciplina, sejam exclusivos.
+
+- Dedução e ações usando regras
+  Alguns sistemas oferecem capacidades para definir regras de dedução (ou inferência) para deduzir novas informações com base nos fatos armazenados no banco de dados. Esses sistemas são chamados de **sistemas de banco de dados dedutivos**. Por exemplo, pode haver regras complexas na aplicação do minimundo para determinar um grupo de consumidores está interessado em um determinado produto com base no histórico de navegação e compras. Estas podem ser especificadas **declarativamente** como regras que, quando compiladas e mantidas pelo SGBD, permitem determinar o momento ideal para fazer uma oferta relacionada ao consumidor.
+  Nos sistemas de banco de dados relacionais de hoje **é possível associar gatilhos** (ou ***triggers***) **a tabelas**. Um gatilho é uma **regra ativada por atualizações em uma tabela**, resultando em **operações adicionais**, como modificações em outras tabelas ou envio de mensagens. Procedimentos mais complexos para impor regras são chamados de **procedimentos armazenados** (***stored procedures***), que são **definidos no banco de dados e acionados quando determinadas condições são atendidas**. **Sistemas de banco de dados ativos** oferecem uma funcionalidade ainda mais avançada, com **regras que automaticamente iniciam ações ao ocorrerem certos eventos**.
+  
+Existem muitos outros benefícios do uso dessa abordagem, como **flexibilidade**, **potencial para garantia de padrões**, etc.
   
 ### Autodescrição de um sistema de banco de dados
 Em um banco de dados, o sistema contém não apenas o próprio banco de dados, mas também uma **definição ou descrição completa de sua estrutura e restrições**. Essa definição é armazenada no catálogo do SGBD, sendo chamada de **metadados**.
