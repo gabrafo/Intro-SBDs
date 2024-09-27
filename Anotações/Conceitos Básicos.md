@@ -174,3 +174,13 @@ Aplicativos com essa função geralmente são chamados de **aplicações de proc
 Algumas das propriedades de uma transação:
 - **Isolamento**: Garante que cada transação pareça executar isoladamente das demais, mesmo que centenas de transações possam estar executando concorrentemente.
 - **Atomicidade**: Garante que todas as operações em uma transação sejam executadas ou que nenhuma seja (em caso de falha de alguma delas).
+
+### Quando não usar um SGBD?
+Apesar das vantagens de usar um SGBD, em algumas situações ele pode gerar custos desnecessários. Esses custos estão ligados ao alto investimento em hardware, software e treinamento, à generalidade que o SGBD oferece e ao esforço extra para implementar funções de segurança e controle. Assim, o uso de arquivos comuns pode ser mais apropriado em casos como:
+
+- Aplicações simples e estáveis, com poucas mudanças.
+- Requisitos rigorosos de tempo real, que não permitem a sobrecarga do SGBD.
+- Sistemas embarcados com armazenamento limitado.
+- Aplicações sem acesso de múltiplos usuários.
+
+Alguns setores, como engenharia (CAD), telecomunicações e sistemas de informações geográficas (SIG), utilizam sistemas específicos de gerenciamento de dados mais eficientes para suas necessidades, em vez de SGBDs de uso geral.
