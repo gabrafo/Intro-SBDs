@@ -14,7 +14,7 @@ Este repositório é dedicado à disciplina GCC 263 - Introdução a Sistemas de
 
 ## Estrutura do Repositório
 ├── Anexo<br>
-|   └── Imagens das anotações<br>
+│    └── Imagens das anotações<br>
 └── Anotações<br>
 &nbsp;&nbsp;&nbsp;&nbsp;└── Anotações Markdown<br>
 
