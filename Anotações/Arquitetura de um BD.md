@@ -39,3 +39,42 @@ Os modelos de dados de objeto também são frequentemente utilizados como modelo
 
 #### Modelos de dados físicos
 Os modelos de dados físicos descrevem o armazenamento dos dados como arquivos no computador, com informações como formatos de registro, ordenações de registro e **caminhos de acesso** (estrutura que torna eficiente a busca por registros). Um índice é um exemplo de um caminho que permite o acesso direto aos dados usando um termo de índice ou uma palavra-chave.
+
+### Esquemas, instâncias e estado do banco de dados
+#### O que é um esquema? E um diagrama de esquema?
+Há uma diferença, em qualquer modelo de dados, entre a descrição do banco de dados e o próprio banco de dados. A descrição é chamada de **esquema**, geralmente criada durante o projeto do sistema. A representação de um esquema é chamada de **diagrama de esquema** (em muitos modelos de dados, esquemas são representados por diagramas). 
+
+![Imagem 2](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%202.png)
+Exemplo de diagrama de esquema. 
+
+O diagrama **apresenta a estrutura de cada tipo de registro**, mas **não as instâncias reais dos registros**. Chamamos cada objeto no esquema (como `ALUNO` ou `PRE_REQUISITO`) de **construtor do esquema**.
+
+Um diagrama de esquema representa apenas **alguns aspectos de um esquema**, como os **nomes de tipos de registro** e **itens de dados**, e **alguns tipos de restrições**. A figura acima não mostra nem o tipo de dado de cada item de dados nem os relacionamentos entre os diversos arquivos, assim, sabemos que **muitos tipos de restrições não são apresentados nos diagramas de esquema**.
+
+#### O que é o estado de um objeto no contexto de BDs?
+Os dados no banco de dados em **determinado momento** no tempo são chamados de **estado** ou **instante** do banco de dados. Também são chamados de conjunto atual de **ocorrências** ou **instâncias** no banco de dados.
+
+**Toda vez que inserimos ou excluímos um registro ou alteramos o valor de um item de dados em um registro, mudamos de um estado do banco de dados para outro.**
+
+Quando definimos um novo banco de dados, especificamos seu esquema apenas para o SGBD. Nesse ponto, **o estado do banco de dados correspondente é o estado vazio**, sem dados. **Obtemos o estado inicial do banco de dados quando ele é populado ou carregado com os dados iniciais.** Daí em diante, a cada nova operação, obteremos um novo estado do banco de dados. Assim, a qualquer instante no tempo, o banco de dados tem um estado **atual**. **O SGBD é parcialmente responsável por garantir que todo estado do banco de dados seja um estado válido**, ou seja, ele **assegura que não hajam inconsistências** momento algum no histórico do BD.
+
+Portanto, um bom esquema (composto por regras e restrições robustas e inteligentes) é capaz de garantir que o estado do banco de dados sempre seja válido. Para isso, o SGBD armazena as descrições das construções e restrições do esquema (os **metadados**) em seu **catálogo**.
+
+O esquema às vezes é chamado de intenção, e um estado do banco de dados é chamado de extensão do esquema.
+
+Por fim, apesar de sabermos que um esquema é feito para "durar", isto é, não ser alterado frequentemente, é possível que haja no futuro demanda de novas restrições ou de diferentes itens de dados, ou mesmo construtores. Esse processo é conhecido como **evolução do esquema** e realizado a partir de operações próprias para esse processo, visando não trazer instabilidade a um banco de dados em funcionamento.
+
+### Arquitetura de três esquemas e independência de dados
+O objetivo da arquitetura de três esquemas é separar as aplicações do usuário do banco de dados físico. 
+
+- Nível interno:
+  O nível interno tem um **esquema interno**, que descreve a **estrutura do armazenamento físico do banco de dados**. O esquema interno usa um **modelo de dados físico** e descreve os detalhes completos do armazenamento de dados e caminhos de acesso para o banco de dados.
+
+- Nível conceitual:
+  O nível conceitual tem um **esquema conceitual**, que **descreve a estrutura do banco de dados inteiro para uma comunidade de usuários**. Ele utiliza a abstração de dados para ocultar detalhes do armazenamento físico, se focando na descrição de entidades, tipos de dados, relacionamentos, operações do usuário e restrições.
+
+- Nível externo:
+  O nível externo ou de visão inclui uma série de **esquemas externos** ou **visões do usuário**. Cada esquema externo **descreve a parte do banco de dados em que um grupo de usuários em particular está interessado** e oculta o restante do banco de dados do grupo de usuários. Cada esquema externo é comumente implementado usando um modelo de dados representativo.
+
+![Imagem 3](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%203.png)
+
