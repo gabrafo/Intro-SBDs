@@ -45,6 +45,7 @@ Os modelos de dados físicos descrevem o armazenamento dos dados como arquivos n
 Há uma diferença, em qualquer modelo de dados, entre a descrição do banco de dados e o próprio banco de dados. A descrição é chamada de **esquema**, geralmente criada durante o projeto do sistema. A representação de um esquema é chamada de **diagrama de esquema** (em muitos modelos de dados, esquemas são representados por diagramas). 
 
 ![Imagem 2](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%202.png)
+
 Exemplo de diagrama de esquema. 
 
 O diagrama **apresenta a estrutura de cada tipo de registro**, mas **não as instâncias reais dos registros**. Chamamos cada objeto no esquema (como `ALUNO` ou `PRE_REQUISITO`) de **construtor do esquema**.
