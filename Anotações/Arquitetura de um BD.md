@@ -106,3 +106,14 @@ Quando os esquemas são compilados e o banco de dados é populado, os usuários 
 Nos SGBDs atuais, esses tipos de linguagens nor malmente não são considerados linguagens distintas, visto que todas se encaixam como sub-linguagens da linguagem **SQL** (***Structured Query Language***), que é uma linguagem integrada e abrangente utilizada, geralmente, em bancos relacionais. No entanto, a definição do armazenamento físico, em geral, ainda é tratada separadamente, pois serve para ajustar o desempenho do sistema de banco de dados, o que é normalmente responsabilidade dos DBAs.
 
 A linguagem SQL representa uma combinação de DDL, VDL e DML, bem como as instruções para especificação de restrição, evolução de esquema (ou seja, alterações na estrutura do banco de dados ao longo do tempo) e outros recursos. **A SDL era um componente nas primeiras versões da SQL, mas foi removida da linguagem para mantê-la apenas nos níveis conceitual e externo**.
+
+#### Tipos de DML
+- Não procedural ou Alto nível:
+  Usada para especificar operações de banco de dados complexas de forma concisa. Ela pode ser executada de forma interativa em um terminal, ou podem ser embutidas em uma linguagem de programação, necessitando de um pré-compilador no último caso. As DMLs de alto nível, como a SQL, podem especificar e recuperar muitos registros em uma única instrução DML; portanto, elas são chamadas de **DMLs de um conjunto de cada vez** ou **orientadas a conjunto**. Uma consulta em uma DML de alto nível normalmente **especifica quais dados recuperar, em vez de como recuperá-los**; portanto, essas linguagens também são chamadas **declarativas**.
+
+- Procedural ou Baixo nível:
+  Uma DML de baixo nível ou procedural deve ser embutida em uma linguagem de programação de uso geral. Esse tipo de DML, em geral, recupera registros individuais ou objetos do banco de dados e processa cada um deles separadamente, portanto, pode precisar de *looping* para ser eficiente em múltiplos objetos. Por tratarem apenas de um registro por vez, são chamadas de **DMLs que tratam um registro por vez**.
+  
+Sempre que comandos DML, sejam eles de alto ou de baixo nível, são incorporados em uma linguagem de programação de uso geral, ela é chamada de **linguagem hospedeira** e a DML é chamada de **sub-linguagem de dados**. Já uma DML de alto nível usada em uma maneira interativa é chamada **linguagem de consulta** (***query language***).
+
+**OBS:** Em bancos de dados de objeto, as sub-linguagens hospedeiras e de dados formam urna linguagem integrada - por exemplo, C++ com algumas extensões, para dar suporte à funcionalidade de banco ele dados.
