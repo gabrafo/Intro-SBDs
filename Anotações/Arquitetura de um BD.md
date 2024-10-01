@@ -1,3 +1,4 @@
+# Arquitetura de um Banco de Dados
 A arquitetura dos SGBDs tem evoluído desde os primeiros sistemas **monolíticos**, nos quais todo o software SGBD era um **sistema altamente integrado**, até os mais modernos, que têm um **projeto modular**, com arquitetura de **sistema cliente/servidor**.
 
 ## Arquitetura Cliente/Servidor
@@ -93,3 +94,15 @@ A arquitetura de três esquemas pode tornar mais fácil obter a verdadeira indep
 
 ## Linguagens de um Banco de Dados
 O sistema precisa oferecer linguagens e interfaces apropriadas para cada categoria de usuário.
+
+Em muitos SGBDs, onde não há uma separação estrita de níveis, uma linguagem chamada **linguagem de definição de dados** (**DDL** - ***Data Definition Language***) é usada pelo DBA e pelos projetistas de banco de dados para **definir os esquemas conceitual e interno**. O **SGBD conta com um compilador da DDL** cuja função é **processar essas instruções, identificar as descrições dos construtores de esquema** (que definem a estrutura do banco de dados) **e armazenar essas informações no catálogo do SGBD**. 
+
+Já **nos SGBDs que mantêm uma separação clara entre os níveis conceitual e interno**, a **DDL é usada para especificar apenas o esquema conceitual**. Outra linguagem, a **linguagem de definição de armazenamento** (**SDL** - ***Storage Definition Language***), é **utilizada para especificar o esquema interno**. 
+
+Para uma verdadeira arquitetura de três esquemas, precisaríamos de uma terceira linguagem, a **linguagem de definição de visão** (**VDL** - ***View Definition Language***), para **especificar visões do usuário e seus mapeamentos ao esquema conceitual**, mas na maioria dos SGBDs a **DDL é usada para definir tanto o esquema conceitual como o externo**. Nos SGBDs relacionais, a **SQL é usada pela VDL para definir visões do usuário** ou da aplicação como resultados de consultas predefinidas.
+
+Quando os esquemas são compilados e o banco de dados é populado, os usuários precisam de alguma forma de manipulá-lo. As manipulações típicas incluem recuperação, inserção, exclusão e modificação dos dados (CRUD). O SGBD oferece um conjunto de operações ou uma linguagem chamada **linguagem de manipulação de dados** (**DML** - ***Data Manipulation Language***) para essas finalidades.
+
+Nos SGBDs atuais, esses tipos de linguagens nor malmente não são considerados linguagens distintas, visto que todas se encaixam como sub-linguagens da linguagem **SQL** (***Structured Query Language***), que é uma linguagem integrada e abrangente utilizada, geralmente, em bancos relacionais. No entanto, a definição do armazenamento físico, em geral, ainda é tratada separadamente, pois serve para ajustar o desempenho do sistema de banco de dados, o que é normalmente responsabilidade dos DBAs.
+
+A linguagem SQL representa uma combinação de DDL, VDL e DML, bem como as instruções para especificação de restrição, evolução de esquema (ou seja, alterações na estrutura do banco de dados ao longo do tempo) e outros recursos. **A SDL era um componente nas primeiras versões da SQL, mas foi removida da linguagem para mantê-la apenas nos níveis conceitual e externo**.
