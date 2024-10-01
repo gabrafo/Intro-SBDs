@@ -79,3 +79,17 @@ O objetivo da arquitetura de três esquemas é separar as aplicações do usuár
 
 ![Imagem 3](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%203.png)
 
+Os processos de transformação de requisições e os resultados entre os níveis são chamados de **mapeamentos**.
+#### Independência de dados
+- Independência lógica de dados:
+  **É a capacidade de alterar o esquema conceitual sem ter de alterar os esquemas externos ou os programas de aplicação.** Exemplo: se faço uma alteração no nível conceitual em uma tabela que não está ligada a uma *view*, a *view* deve seguir intacta após as mudanças.
+
+- Independência física de dados
+  **É a capacidade de alterar o esquema interno sem ter de alterar o esquema conceitual (bem como o esquema externo).**  Mudanças no esquema interno podem ser necessárias porque alguns arquivos físicos foram reorganizados para melhorar o desempenho da recuperação ou atualização. No entanto, se os mesmos dados de antes permanecerem no banco de dados, provavelmente não teremos de alterar o esquema conceitual ou externo.
+
+Sempre que temos um SGBD de múltiplos níveis, **seu catálogo deve ser expandido para incluir informações sobre como mapear solicitações e dados entre os diversos níveis**. O SGBD usa software adicional para realizar esses mapeamentos, recorrendo à informação de mapeamento no catálogo.  Nesse sentido, a independência de dados só é possível, porque **quando determinado esquema é alterado, seu(s) esquema(s) de nível mais alto permanece(m) inalterado(s).** Assim, quando um esquema é alterado, apenas o mapeamento entre o esquema alterado e os esquemas de níveis superiores ou inferiores é ajustado, dependendo do nível onde a mudança ocorreu.
+
+A arquitetura de três esquemas pode tornar mais fácil obter a verdadeira independência de dados, tanto física quanto lógica. Porém, os dois níveis de mapeamentos criam uma sobrecarga durante a compilação ou execução de uma consulta ou programa, levando a baixa eficiência do SGBD.
+
+## Linguagens de um Banco de Dados
+O sistema precisa oferecer linguagens e interfaces apropriadas para cada categoria de usuário.
