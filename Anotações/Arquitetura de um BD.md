@@ -135,3 +135,12 @@ Algo bastante importante também é mencionar como o catálogo é frequentemente
 **Pré-compilador**: Ao utilizar uma **linguagem hospedeira** para realizar operações em um banco de dados a partir de uma aplicação, há a necessidade de uma análise prévia dos comandos DML escritos pelo programa. Esses comandos são extraídos por um pré-compilador e enviados a um compilador DML, que os transforma em código objeto para o acesso ao banco de dados. O restante do programa é processado pelo compilador da linguagem hospedeira, e ambos os códigos objeto são combinados, resultando em uma **transação programada**, com um código executável que inclui chamadas ao banco de dados durante a execução. Assim, os usuários podem executar transações programadas, como saques bancários, fornecendo apenas os parâmetros necessários, e **cada execução é considerada uma transação separada**. 
 
 **Processador do banco de dados em tempo de execução**: Recebe as operações de recuperação e modificação e as executa sobre o banco de dados, atualizando o catálogo com estatísticas conforme o necessário, além de utilizar o gerenciador de dados armazenados para que possa executar operações de entrada/saída em baixo nível entre o disco e a memória.
+
+#### Utilitários
+**Carregador**: Povoar o banco de dados a partir de um arquivo com dados já existentes.
+
+***Backup***: Criar uma cópia de recuperação do banco de dados, para evitar problemas com falhas de software ou hardware.
+
+**Reorganizador de arquivos**: Utilizado para, como o nome diz, reorganizar arquivos no disco rígido para melhorar a performance do banco de dados.
+
+**Monitor de performance**: Monitora a performance do banco de dados, e oferece estatísticas para o DBA quanto ao desempenho do sistema.
