@@ -116,4 +116,22 @@ A linguagem SQL representa uma combinação de DDL, VDL e DML, bem como as instr
   
 Sempre que comandos DML, sejam eles de alto ou de baixo nível, são incorporados em uma linguagem de programação de uso geral, ela é chamada de **linguagem hospedeira** e a DML é chamada de **sub-linguagem de dados**. Já uma DML de alto nível usada em uma maneira interativa é chamada **linguagem de consulta** (***query language***).
 
-**OBS:** Em bancos de dados de objeto, as sub-linguagens hospedeiras e de dados formam urna linguagem integrada - por exemplo, C++ com algumas extensões, para dar suporte à funcionalidade de banco ele dados.
+**OBS:** Em bancos de dados de objeto, as sub-linguagens hospedeiras e de dados formam urna linguagem integrada - por exemplo, C++ com algumas extensões, para dar suporte à funcionalidade de banco de dados.
+
+## Ambiente de um Sistema de Bancos de Dados
+### Módulos componentes do SGBD
+O banco de dados, bem como seu catálogo, são, geralmente, **armazenados em memória**, portanto, estão sempre sucetíveis ao controle do **sistema operacional** (**SO**), que gerencia as operações de leitura e escrita em disco. Nesse sentido, muitos SGBDs têm seu próprio **gerenciador de buffer**, justamente para organizar por conta própria essas operações, visto que elas são primordiais para garantir um bom desempenho do banco de dados. A redução da leitura/escrita em disco melhora o desempenho de maneira considerável. Ainda, há um modulo **gerenciador de dados armazenados** que controla o acesso às informações do SGBD armazenadas em disco, trabalhando em conjunto com o SO para garantir que as restrições do banco de dados sejam respeitadas corretamente. 
+
+![Imagem 4](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%204.png)
+
+A imagem acima representa como diferentes usuários, a partir de diferentes interfaces de acesso, interagem com o banco de dados, e como isso só é possível a partir de operações de baixo-nível do sistema do BD.
+
+Algo bastante importante também é mencionar como o catálogo é frequentemente consultado e atualizado para a realização de consultas/operações por parte do usuário.
+
+**Compliador de consulta**: Responsável por analisar e validar a sintaxe das consultas enviadas pelos usuários, bem como o nome dos arquivos que as envolvem.
+
+**Otimizador de consulta**: Responsável pelo rearranjo/reordenação de dados a partir de algoritmos inteligentes, removendo quaisquer redundâncias desnecessárias para diminuir ao máximo possível o custo computacional durante a execução de operações no banco de dados.  Ele consulta o catálogo do sistema em busca de informações estatísticas e outras informações físicas sobre os dados armazenados, gerando um código executável que realiza as operações necessárias para a consulta e faz chamadas ao processador em tempo de execução. 
+
+**Pré-compilador**: Ao utilizar uma **linguagem hospedeira** para realizar operações em um banco de dados a partir de uma aplicação, há a necessidade de uma análise prévia dos comandos DML escritos pelo programa. Esses comandos são extraídos por um pré-compilador e enviados a um compilador DML, que os transforma em código objeto para o acesso ao banco de dados. O restante do programa é processado pelo compilador da linguagem hospedeira, e ambos os códigos objeto são combinados, resultando em uma **transação programada**, com um código executável que inclui chamadas ao banco de dados durante a execução. Assim, os usuários podem executar transações programadas, como saques bancários, fornecendo apenas os parâmetros necessários, e **cada execução é considerada uma transação separada**. 
+
+**Processador do banco de dados em tempo de execução**: Recebe as operações de recuperação e modificação e as executa sobre o banco de dados, atualizando o catálogo com estatísticas conforme o necessário, além de utilizar o gerenciador de dados armazenados para que possa executar operações de entrada/saída em baixo nível entre o disco e a memória.
