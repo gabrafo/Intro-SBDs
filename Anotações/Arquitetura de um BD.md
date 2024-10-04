@@ -6,6 +6,11 @@ Geralmente, em uma arquitetura básica de SGBD cliente/servidor temos dois módu
 
 O **módulo cliente** é projetado para ser executado em uma estação de trabalho ou computador pessoal. Em geral, os **programas de aplicação e interfaces com o usuário que acessam o banco de dados, o acessam a partir do módulo cliente**. Assim, esse módulo é encarregado de oferecer interfaces amigáveis ao usuário (formulários ou GUIs).
 
+### Implementações básicas
+A arquitetura cliente/servidor foi desenvolvida para lidar com ambientes de computação em que um grande número de PCs ou outros dispositivos. A idéia é modularizar o trabalho, definindo **servidores especializados** como funcionalidades específicas, assim: uma máquina pode ser, por exemplo, designada como um servidor de impressão, sendo conectada a várias impressoras e processando todas as solicitações de impressão. 
+
+Os recursos forneceidos por um servidor especialiado podem ser acessados por muitas **máquinas cliente**. Máquinas cliente oferecem ao usuário interfaces apropriadas para a utilização desses servidores, bem como poder de processamento local para que isso seja possível.
+
 ## Modelos de dados, esquemas e instâncias
 Como mencionado nos [conceitos básicos](https://github.com/gabrafo/Intro-SBDs/blob/main/Anota%C3%A7%C3%B5es/Conceitos%20B%C3%A1sicos.md), uma característica fundamento da abordagem de banco de dados é a **abstração de dados**. A **abstração de dados**, geralmente, se refere à supressão de detalhes da organização e armazenamento dos dados., visando facilitar o entendimento lógico (e não, necessariamente, técnico) do que está sendo apresentado ao usuário. 
 
