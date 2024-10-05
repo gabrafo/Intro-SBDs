@@ -192,3 +192,16 @@ Algo bastante importante também é mencionar como o catálogo é frequentemente
 **Reorganizador de arquivos**: Utilizado para, como o nome diz, reorganizar arquivos no disco rígido para melhorar a performance do banco de dados.
 
 **Monitor de performance**: Monitora a performance do banco de dados, e oferece estatísticas para o DBA quanto ao desempenho do sistema.
+
+## Classificação dos SGBDs
+Podemos classificá-los a partir de vários critérios, aqui estão alguns:
+
+- **Modelo de dados**: relacional, objeto, objeto-relacional, NoSQL, chave-valor, XML, hierárquico, rede, etc.
+  
+- **Número de usuários**: mono-usuário, multiusuário, etc.
+  
+- **Custo**: gratuito e licença paga.
+
+- **Número de sites**: É o número de locais em que eles estão sendo armazenados e executados.
+  1. Centralizado - os dados estão armazenados em um único computador.
+  2. Distribuído (SGBDD) - o banco de dados e o software dos SGBDs estão em vários locais conectados por uma rede de computadores, podendo ser **homogêneos** (usando o mesmo SGBD nos vários sites) ou **federados** (usando SGBDs diferentes e com certo grau de autonomia local, mas que possuem uma forma de ligação entre eles). Esse tipo de banco de dados é bem comum para sistemas NoSQL, que costumam lidar com *Big Data*.
