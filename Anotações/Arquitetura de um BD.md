@@ -1,15 +1,58 @@
 # Arquitetura de um Banco de Dados
 A arquitetura dos SGBDs tem evoluído desde os primeiros sistemas **monolíticos**, nos quais todo o software SGBD era um **sistema altamente integrado**, até os mais modernos, que têm um **projeto modular**, com arquitetura de **sistema cliente/servidor**.
 
+## Arquiteturas Centralizadas
+Nesse tipo de arquitetura apenas uma máquina (geralmente, um *mainframe*) oferece o processamento principal para todas as funções do sistema, incluindo programas de aplicação do usuário e programas de interface com o usuário, bem como toda a funcionalidade do SGBD. 
+
+O motivo dessa arquitetura ter sido tão predominante no passado era que a maioria dos usuários acessava tais sistemas por terminais de computador, que não tinham poder de processamento e apenas ofereciam capacidades de exibição.
+
+![Imagem 5.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%205.png)
+
 ## Arquitetura Cliente/Servidor
 Geralmente, em uma arquitetura básica de SGBD cliente/servidor temos dois módulos: o **módulo cliente** e o **módulo servidor**.
 
 O **módulo cliente** é projetado para ser executado em uma estação de trabalho ou computador pessoal. Em geral, os **programas de aplicação e interfaces com o usuário que acessam o banco de dados, o acessam a partir do módulo cliente**. Assim, esse módulo é encarregado de oferecer interfaces amigáveis ao usuário (formulários ou GUIs).
 
 ### Implementações básicas
-A arquitetura cliente/servidor foi desenvolvida para lidar com ambientes de computação em que um grande número de PCs ou outros dispositivos. A idéia é modularizar o trabalho, definindo **servidores especializados** como funcionalidades específicas, assim: uma máquina pode ser, por exemplo, designada como um servidor de impressão, sendo conectada a várias impressoras e processando todas as solicitações de impressão. 
+A arquitetura cliente/servidor foi desenvolvida para lidar com ambientes de computação em que um grande número de PCs ou outros dispositivos. A ideia é modularizar o trabalho, definindo **servidores especializados** como funcionalidades específicas, assim: uma máquina pode ser, por exemplo, designada como um servidor de impressão, sendo conectada a várias impressoras e processando todas as solicitações de impressão. 
 
-Os recursos forneceidos por um servidor especialiado podem ser acessados por muitas **máquinas cliente**. Máquinas cliente oferecem ao usuário interfaces apropriadas para a utilização desses servidores, bem como poder de processamento local para que isso seja possível.
+Os recursos fornecidos por um servidor especializado podem ser acessados por muitas **máquinas cliente**. Máquinas cliente oferecem ao usuário interfaces apropriadas para a utilização desses servidores, bem como poder de processamento local para que isso seja possível.
+
+Resumindo:
+- **Cliente**: Máquina que oferece capacidades de interface com o usuário e processamento local para executar aplicações locais.
+
+- **Servidor**: Sistema de hardware e software que oferece serviços às máquinas cliente, tais como acesso a arquivos, acesso ao banco de dados, impressão, acesso a determinado serviço na Web, etc.
+  
+**Quando um cliente requer acesso a alguma funcionalidade adicional** - como acesso ao banco de dados - que não existe nessa máquina, **ele se conecta a um servidor que oferece a funcionalidade necessária**. Em geral, algumas máquinas têm instalados apenas softwares cliente, outras, apenas software servidor, e ainda outras podem incluir software cliente e servidor, conforme ilustrado na representação do funcionamento físico desse tipo de arquitetura disponível logo abaixo.
+
+![Imagem 7.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%207.png)
+
+Representação **física** de uma arquitetura cliente/servidor em duas camadas.
+
+![Imagem 6.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%206.png)
+
+Representação **lógica** da arquitetura cliente/servidor em duas camadas.
+
+#### Implementação de duas camadas
+Os componentes de software são distribuídos por dois sistemas: cliente e servidor.
+
+- **Cliente**: Executam os programas da interface com o usuário e os programas de aplicação.
+
+- **Servidor**: No SGBDs relacionais, fornecem as funcionalidades de consulta e de processamento de transações.
+
+Para que isso seja feito, utilizamos dois padrões de comunicação:
+- **Padrão ODBC (*Open Database Connectivity*)**: Oferece **interfaces de programação de aplicações** (**API** - *Application Programming Interface*), que **permite que os programas do cliente chamem o SGBD**, desde que as máquinas cliente e servidor tenham o software necessário instalado. A maioria dos vendedores de SGBD oferece drivers ODBC para seus sistemas.
+  
+- **Padrão JDBC (*Java Database Connectivity*)**: Permite que programas cliente em Java acessem um ou mais SGBDs por meio de uma interface-padrão.
+  
+#### Implementação de três camadas e *n* camadas
+Muitas aplicações Web utilizam uma arquitetura chamada arquitetura de três camadas, que acrescenta uma camada intermediária entre o cliente e o servidor de banco de dados. Essa camada intermediária é chamada de **servidor de aplicação** ou **servidor Web**, dependendo da aplicação. Esse servidor desempenha um papel intermediário pela execução de programas de aplicação e armazenamento de regras de negócios, também podendo melhorar a segurança da aplicação a partir da criptografia. 
+
+Outras arquiteturas também foram propostas. É possível dividir as camadas entre o usuário e os dados armazenados em outros componentes mais detalha dos, resultando, assim, em arquiteturas de *n* camadas, onde *n* pode ser quatro ou cinco camadas. Costumeiramente, a camada de lógica de negócios é dividida em várias camadas nesse tipo de arquitetura. As aplicações de *n* camadas têm a vantagem de que qualquer camada poder ser executada em um processador ou plataforma de sistema operacional adequado e ser tratada independentemente.
+
+![Imagem 8.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%208.png)
+
+Exemplo de arquitetura cliente/servidor de três camadas.
 
 ## Modelos de dados, esquemas e instâncias
 Como mencionado nos [conceitos básicos](https://github.com/gabrafo/Intro-SBDs/blob/main/Anota%C3%A7%C3%B5es/Conceitos%20B%C3%A1sicos.md), uma característica fundamento da abordagem de banco de dados é a **abstração de dados**. A **abstração de dados**, geralmente, se refere à supressão de detalhes da organização e armazenamento dos dados., visando facilitar o entendimento lógico (e não, necessariamente, técnico) do que está sendo apresentado ao usuário. 
