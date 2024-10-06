@@ -32,7 +32,9 @@ Cada entidade possui **atributos**, que são propriedades especificas que a desc
 - Monovalorados ou multivalorado
 
   Resumidamente, dita se um atributo pode ter apenas um valor associado a ele (exemplo: uma empresa, normalmente, só tem um nome) ou se pode ter mais de um (uma empresa pode ter várias filiais e, portanto, várias localizações distintas).
+  
   ![Imagem 11.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2011.png)
+  
   (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
   
 - Armazenados ou derivados
@@ -49,18 +51,41 @@ Cada entidade possui **atributos**, que são propriedades especificas que a desc
   
   ![Imagem 13.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2013.png)
 
+  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
+
 - Nulos
 
   Pode receber o valor **nulo**, ou seja, podem receber um valor "desconhecido".
   
   ![Imagem 14.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2014.png)
+
+  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
   
 - Chaves
 
   Serve como identificador de um objeto, sendo único para cada uma das entidades do conjunto todo de entidades.
   
   ![Imagem 15.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2015.png)
+
+  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
   
   Um tipo entidade pode ter mais de um atributo chave, sendo, cada um, uma chave (de maneira isolada), ou pode ter um atributo chave composto, subdividido em diversos outros atributos, sendo a combinação de todos esses atributos única para cada entidade.
   
   ![Imagem 16.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2016.png)
+
+  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
+
+## Relacionamento
+Um **relacionamento** é uma **associação entre entidades** que representa um fato do mundo real.
+
+Já um **tipo relacionamento** define um conjunto de associações entre diferentes tipos entidade. 
+
+Por exemplo, um tipo relacionamento chamado `Matrícula` poderia descrever a associação entre entidades do tipo `Aluno` e entidades do tipo `Curso`, estabelecendo como alunos estão matriculados em cursos. 
+
+Poderíamos descrever também o tipo relacionamento `trabalha_para` entre os tipos entidades `Funcionário` e `Departamento`, que associa cada funcionário com o departamento para o qual ele trabalha. No exemplo abaixo, a cardinalidade (que logo será explicada) aponta que um objeto do tipo `Funcionário` pode trabalhar apenas para um `Departamento`, mas um `Departamento` pode ter vários objetos do tipo `Funcionário` trabalhando para ele.
+
+![Imagem 17](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2017.png)
+
+(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira).
+
+### Grau de um tipo relacionamento
