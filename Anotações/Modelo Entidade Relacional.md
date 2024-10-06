@@ -86,6 +86,6 @@ Poderíamos descrever também o tipo relacionamento `trabalha_para` entre os tip
 
 ![Imagem 17](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2017.png)
 
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira).
+(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira)).
 
 ### Grau de um tipo relacionamento
