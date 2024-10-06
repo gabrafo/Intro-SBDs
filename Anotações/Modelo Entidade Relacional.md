@@ -21,6 +21,7 @@ Cada entidade possui **atributos**, que são propriedades especificas que a desc
 
 **Tipos de atributos**:
 - Simples ou compostos
+
   Resumidamente, dita se um atributo pode ser subdividido em outros atributos menores ou não.
   
   ![Imagem 10.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2010.png)
@@ -28,11 +29,13 @@ Cada entidade possui **atributos**, que são propriedades especificas que a desc
   (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
   
 - Monovalorados ou multivalorado
+
   Resumidamente, dita se um atributo pode ter apenas um valor associado a ele (exemplo: uma empresa, normalmente, só tem um nome) ou se pode ter mais de um (uma empresa pode ter várias filiais e, portanto, várias localizações distintas).
   ![Imagem 11.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2011.png)
   (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
   
 - Armazenados ou derivados
+
   Resumidamente, dita se um atributo está, de fato, armazenado no banco de dados ou se não está armazenado, mas que pode ser obtido a partir da manipulação do(s) valor(es) de outro(s) atributo(s).
   
   ![Imagem 12.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2012.png)
@@ -40,16 +43,19 @@ Cada entidade possui **atributos**, que são propriedades especificas que a desc
   (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
 
 - Complexos
+
   É um atributo que pode ter vários valores associados a ele e também pode ser subdividido em diversos atributos menores (que o compõem).
   
   ![Imagem 13.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2013.png)
 
 - Nulos
+
   Pode receber o valor **nulo**, ou seja, podem receber um valor "desconhecido".
   
   ![Imagem 14.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2014.png)
   
 - Chaves
+
   Serve como identificador de um objeto, sendo único para cada uma das entidades do conjunto todo de entidades.
   
   ![Imagem 15.png](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2015.png)
