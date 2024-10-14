@@ -1,179 +1,207 @@
 # Modelo Entidade Relacional
-**OBS**: A partir daqui, muitas das minhas anotações terão como base, quase que exclusivamente, o conteúdo das [videoaulas do Prof. Denilson](https://www.youtube.com/playlist?list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n), já que há uma abordagem mais direta dos conceitos estudados lá. Para quem preferir se orientar pelo livro-texto, estamos tratando (usando como orientação a sexta edição), do capítulo 7.
+O **modelo relacional**, introduzido por **Edgar F. Codd** em 1970, é um dos principais modelos usados para organizar dados em sistemas de gerenciamento de bancos de dados (SGBD). Ele é baseado em conceitos matemáticos da teoria de conjuntos e da lógica de predicados de primeira ordem. A partir de 1980, ele começou a ser amplamente utilizado em implementações comerciais de bancos de dados.
 
-O Modelo de Entidades e Relacionamentos (ER) é um modelo **conceitual** usado para projeto de aplicações de banco de dados, não se preocupando com aspectos de implementação, mas sim com a representação de como queremos a organização daquele sistema logicamente.
-Esse modelo é **baseado na percepção do mundo real como conjuntos de objetos básicos** chamados entidades e nos **relacionamentos entre esses objetos**.
+## Conceitos básicos
+O modelo relacional representa o banco de dados como uma **coleção de relações**. 
 
-## Entidades e atributos
-### Entidades
-O objeto básico que o modelo ER representa é uma **entidade**, que é **algo no mundo real com uma existência independente**. Uma entidade pode ser um objeto com uma existência física (exemplo: um carro), ou uma existência conceitual (exemplo: um cargo empresarial). 
+Assim, os dados são organizados em relações, que podem ser pensadas como **tabelas bidimensionais**. Cada relação é composta por um **conjunto de linhas (tuplas) e colunas (representando diversos valores de um mesmo atributo)**. 
 
-Já o **tipo entidade** define uma coleção (classe) de entidades que têm os mesmos atributos. A função do **tipo entidade** é descrever o esquema para um conjunto de entidades. Costuma ser representada por um retângulo no diagrama.
+Cada linha da tabela contém uma coleção de valores de dados relacionados, que podem ser interpretados como fatos descrevendo uma entidade, ou um relacionamento no mundo real. Além disso, o nome da tabela e os nomes das colunas são usados para ajudar na interpretação do significado dos valores em cada linha da tabela.
 
-![Imagem 9](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%209.png)
+![Imagem 34](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2034.png)
 
-Representação de um tipo entidade.
+(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=TvFdpcfjo-A)).
 
-E um **conjunto de entidades** é um conjunto com entidades de um mesmo tipo de entidade, assim, o conjunto de todos os funcionários pode ser definido como um conjunto de entidades `Funcionário`, onde todos os objetos (funcionários) partilham do mesmo tipo entidade (`Funcionário`).
+Na imagem acima, temos cinco tuplas, representando cinco entidades diferentes, além de sete atributos diferentes, com valores que variam para cada tupla da relação (tabela).
 
-### Atributos
+## Domínio
+O tipo de dado que descreve os valores que um atributo pode ter é chamado **domínio**. Cada domínio é um conjunto de valores atômicos/indivisíveis.
 
-Cada entidade possui **atributos**, que são propriedades especificas que a descreve. Por exemplo, uma entidade `FUNCIONARIO` pode ser descrita pelo nome, idade, endereço, salário e cargo do funcionário.
+### Exemplos de domínios
+- **Nome**: O domínio para o atributo "Nome" pode ser um conjunto de cadeias de caracteres que contenham apenas letras.
+- **Idade_Aluno**: O domínio para o atributo "Idade_Aluno" pode ser um número inteiro entre 0 e 80.
+- **CPF**: O domínio pode ser uma string que segue o formato `ddd.ddd.ddd-dd`, onde cada `d` é um dígito entre 0 e 9.
+- **Salário**: O domínio pode ser um número real positivo com duas casas decimais, como `3000.50`, representando um salário.
 
-**Tipos de atributos**:
-- Simples ou compostos
+## Esquema Relacional
+É uma expressão da fórmula R(A1, A2, ..., An), onde **R** é o nome da elação, **Ai** é o nome de um atributo (estando associado a um domínio de valores denotado como **dom(Ai)**, que define os valores válidos que esse atributo pode assumir) e **n** é o grau da relação, isto é, o número de atributos presentes na relação.
 
-  Resumidamente, dita se um atributo pode ser subdividido em outros atributos menores ou não.
+### Exemplos de Esquema Relacional
+
+1. **Estudante(nome, matrícula, endereço, telefone, dataNasc)**:
+    - A relação **Estudante** tem cinco atributos: **nome**, **matrícula**, **endereço**, **telefone**, e **dataNasc**.
+    - Cada um desses atributos possui um domínio associado. Por exemplo, **nome** pode estar no domínio de cadeias de caracteres, **dataNasc** no domínio de datas, e assim por diante.
+
+2. **Disciplina(nome, código, cargaHorária, numCréditos)**:
+    - A relação **Disciplina** tem quatro atributos: **nome**, **código**, **cargaHorária**, e **numCréditos**.
+    - Cada atributo está associado ao seu respectivo domínio. Por exemplo, **código** pode ser uma sequência alfanumérica, e **numCréditos** um número inteiro.
+
+## Relação
+Uma relação **r** de um esquema **R**, denotada por **r(R)**, é um conjunto de **n** tuplas: **r = {t1, t2, ..., tn}**. Cada tupla é uma lista ordenada de **m** valores: **t = <v1, v2, ..., vm>**, onde cada valor **vi** (para **1 ≤ i ≤ m**) pertence ao domínio **dom(Ai)** ou pode ser um valor nulo.
+
+```txt
+R(A1, A2, ..., Am)
++-----------------------------+
+| A1   | A2   | ... | Am       |
++-----------------------------+
+| v11  | v12  | ... | v1m      |  <- Primeira tupla (t1)
+| v21  | v22  | ... | v2m      |  <- Segunda tupla (t2)
+| ...  | ...  | ... | ...      |  <- Continua para as próximas tuplas
+| vn1  | vn2  | ... | vnm      |  <- Última tupla (tn)
++-----------------------------+
+```
+Na tabela acima:
+- **R** é a relação.
+- **A1, A2, ..., Am** são os atributos (colunas), onde **m** é o número de atributos.
+- Cada valor **vi,j** representa o valor do atributo **Ai** na tupla **tj**. Por exemplo:
+    - **v11** é o valor do **atributo A1** na **tupla 1**.
+    - **v12** é o valor do **atributo A2** na **tupla 1**.
+    - E assim por diante para os outros atributos e tuplas.
+
+O valor **NULL** pode aparecer em qualquer uma dessas posições, caso o dado seja desconhecido ou ausente.
+
+Formalmente, uma relação **r(R)** é um subconjunto do produto cartesiano dos domínios que definem **R**:
+
+![Imagem 35](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2035.png)
+
+O produto cartesiano especifica todas as possíveis combinações de valores dos domínios fundamentais. Cada tupla na relação r(R) é uma combinação específica de valores que representa um registro real. Não estamos considerando todas as combinações possíveis (que o produto cartesiano geraria), mas apenas aquelas que realmente existem e são relevantes.
+
+### Características das relações
+Uma relação no modelo relacional é composta por tuplas que representam dados específicos. 
+
+- **Ordem das Tuplas**: A ordem das tuplas é irrelevante. 
+- **Ordem dos Valores**: A ordem dos valores dentro de uma tupla é relevante, a menos que se estabeleça uma correspondência entre esses valores e os atributos definidos. 
+- **Unicidade das Tuplas**: Cada tupla de uma relação é única. 
+- **Valores Atômicos**: O valor de cada atributo em uma tupla é atômico; atributos compostos e multivalorados não são permitidos. 
+
+Ademais, o esquema de uma relação pode ser interpretado como uma declaração ou um tipo de afirmação (asserção), com cada tupla podendo ser interpretada como um fato ou uma instância em particular da afirmação.
+
+#### Valores nulos
+Podemos ter valores nulos (`NULL`), que representam valores desconhecidos para determinado atributo ou que não se aplicam a esta tupla. Valores `NULL` geralmente são interpretados como: 
+- Valores desconhecidos 
+- Valores que existem, mas não estão disponíveis 
+- Valores indefinidos (atributo não se aplica à tupla)
+
+#### Exemplo de tupla
+```txt
+t = <BD, 032, 72, 4, NULL>
+```
+Nesta tupla, os valores representam:
+- `BD`: Nome da disciplina
+- `032`: Código da disciplina
+- `72`: Carga horária da disciplina
+- `4`: Número de créditos da disciplina
+- `NULL`: Semestre da disciplina (valor desconhecido ou não aplicável)
+
+##### Exemplo de valores em diferentes ordens
+- **Tupla 1**:
+```txt
+t1 = <(nome, BD), (código, 032), (cargaHorária, 72), (numCreditos, 4), (semestre, NULL)>
+```
+Os valores são apresentados com seus respectivos atributos.
+
+- **Tupla 2**:
+```txt
+t2 = <(código, 032), (nome, BD), (numCreditos, 4), (semestre, NULL), (cargaHorária, 72)>
+```
+ Aqui, a ordem dos valores foi alterada, o que pode levar a uma interpretação incorreta se não houver uma correspondência estabelecida entre os valores e os atributos.
+ 
+ ## Esquema de um BD Relacional
+ Um **esquema de banco de dados relacional** (denotado por **S**) define dois elementos principais:
+
+- **Um conjunto de esquemas de relações** (**R**): Representado por **R = {R1, R2, ..., Rn}**, onde cada **Ri** é um **esquema de relação**, ou seja, **uma tabela no banco de dados**. Essas tabelas possuem colunas (atributos) e descrevem como os dados serão organizados.
+  Exemplo:
+- **R1**: Esquema da tabela "Estudantes"
+- **R2**: Esquema da tabela "Cursos"
+
+- **Um conjunto de restrições de integridade** (**I**): Representado por **I = {I1, I2, ..., Im}**, onde cada **Ii** é uma **restrição de integridade** (que terá mais detalhes a seguir). Essas restrições são regras que os dados precisam seguir. Por exemplo, uma regra pode dizer que nenhum valor pode ser `NULL` em uma coluna específica, ou que um campo deve ser único (como uma chave primária).
+
+### Estado de um Banco de Dados
+O **estado** de um banco de dados (**BD**) reflete o **conjunto atual de dados que está armazenado**. O estado é composto por um conjunto de estados de relação, denotado por **BD = {r1, r2, ..., rn}**, onde cada **ri** é uma instância (ou seja, um conjunto de dados reais) da relação **Ri**.
+
+- **ri**: Representa os dados de uma tabela em um dado momento. Por exemplo, se **R1** for a tabela "Estudantes", **r1** representa os dados que estão atualmente dentro dessa tabela.
+
+Cada estado de relação **ri** deve obedecer às restrições de integridade em **I**. Isso significa que, por exemplo, se houver uma restrição dizendo que a coluna "Matrícula" de um aluno não pode ser nula, o estado atual **r1** da tabela "Estudantes" deve seguir essa regra.
+
+Resumindo, um estado do banco de dados é a situação atual dos dados, ou seja, o conjunto de registros que segue essas regras. Isso pode ser representado por **S = (R, I)**.
+
+## Restrições do Modelo Relacional
+No modelo relacional, existem diferentes tipos de restrições que garantem a consistência e integridade dos dados. Elas podem ser classificadas em três categorias principais:
+
+1. **Restrições inerentes (ou implícitas)**:
+    - São baseadas no próprio modelo relacional.
+    - Não precisam ser declaradas explicitamente, pois fazem parte das regras fundamentais do modelo.
+    - Exemplo: A exigência de que uma tupla em uma relação seja única.
+
+2. **Restrições baseadas em esquemas (ou explícitas)**:
+    - Podem ser expressas diretamente nos esquemas do modelo de dados.
+    - Geralmente são declaradas durante a criação do esquema e dizem respeito aos domínios dos atributos, chaves primárias, chaves estrangeiras, entre outros.
+    - Exemplo: Definir que a coluna **código** de uma tabela **Aluno** deve ser única.
+
+3. **Restrições baseadas na aplicação (ou semânticas / regras de negócio)**:
+    - Não podem ser diretamente expressas nos esquemas do modelo relacional.
+    - São expressas e impostas por meio dos programas de aplicação, ou seja, pelo código da aplicação que interage com o banco de dados.
+    - Exemplo: Definir que a carga horária de uma disciplina não pode exceder 100 horas, o que seria uma regra específica de uma aplicação e precisaria ser validada em nível de programação.
+
+### Sobre as restrições explícitas
+São formas de restrição explícita:
+- Restrição de domínio
+  O valor de cada atributo deve ser atômico no domínio do atributo. Isso significa que cada campo em uma tupla contém um único valor, e não uma lista ou conjunto de valores, que obrigatoriamente obedece ao domínio do atributo (exemplo: um nome tem que ser uma sequência de letras).
   
-  ![Imagem 10](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2010.png)
+- Restrição de chave 
+  **Chave**: Uma chave é um conjunto mínimo de valores dos atributos que identifica unicamente uma tupla. Se há mais de uma chave em um esquema de relação, cada uma é chamada de **chave candidata**, sendo uma delas arbitrariamente escolhida como **chave primária**, enquanto as outras chaves candidatas são chamadas **chaves secundárias/alternativas**. Normalmente, escolhe-se como chave primária a combinação de chaves com o **menor número de atributos**, visando melhor eficiência e simplicidade.
   
-  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
+  ![Imagem 36](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2036.png)
   
-- Monovalorados ou multivalorado
-
-  Resumidamente, dita se um atributo pode ter apenas um valor associado a ele (exemplo: uma empresa, normalmente, só tem um nome) ou se pode ter mais de um (uma empresa pode ter várias filiais e, portanto, várias localizações distintas).
+  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=TvFdpcfjo-A)).
   
-  ![Imagem 11](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2011.png)
+- Restrição sobre valores nulos 
+  Especifica se valores `NULL` são permitidos ou não para cada atributo. Caso um atributo precise ter um valor válido (ou seja, não pode ser `NULL`), deve ser especificado como `NOT NULL` (não nulo). Caso o atributo possa ter um valor nulo, então ele deve ser especificado como `NULL`.
+
+- Restrição de integridade de entidade 
+  A chave primária não pode ter valor nulo, justamente por servir para identificar tuplas individualmente.
   
-  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
+- Restrição de integridade referencial
+  A **restrição de integridade referencial** é uma regra que mantém a consistência entre as tuplas de duas relações (ou tabelas) relacionadas em um banco de dados. Ela **garante que, quando uma tupla em uma relação faz referência a outra tupla em outra relação, essa referência é válida**.
   
-- Armazenados ou derivados
-
-  Resumidamente, dita se um atributo está, de fato, armazenado no banco de dados ou se não está armazenado, mas que pode ser obtido a partir da manipulação do(s) valor(es) de outro(s) atributo(s).
+  **Chave estrangeira**: A integridade referencial é implementada através do conceito de **chave estrangeira**. Uma chave estrangeira é um **conjunto de um ou mais atributos (colunas) em uma relação (tabela) que estabelece um vínculo entre essa relação e outra**.
   
-  ![Imagem 12](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2012.png)
-  
-  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
+   **A chave estrangeira referencia a chave primária (PK) de outra relação**. Isso significa que o **valor da chave estrangeira deve corresponder a um valor existente na chave primária da tabela referenciada**.
+   
+   Um conjunto de atributos **FK** em um esquema de relação **R1** é uma chave estrangeira de **R1** que referencia uma relação **R2** se ele satisfaz as duas regras seguintes:
+   
+   1. **Domínio Correspondente**: Os atributos de **FK** devem ter os mesmos domínios dos atributos da chave primária **PK** de **R2**. Isso implica que os **tipos de dados e as restrições aplicáveis aos atributos devem ser compatíveis**, garantindo que os valores possam ser corretamente comparados e utilizados nas referências.
 
-- Complexos
+   2. **Referência Válida**: Um valor de **FK** na tupla **t1** da instância **r1** (da relação **R1**) deve satisfazer uma das duas condições:
+    - O valor ocorre como um valor de **PK** para alguma tupla **t2** na instância **r2** (da relação **R2**), o que significa que a referência é válida e aponta para uma tupla existente.
+    - Ou o valor é **nulo**, indicando que a tupla **t1** não está associada a nenhuma tupla na relação **R2**, o que também é permitido se a chave estrangeira foi definida para aceitar valores nulos.
 
-  É um atributo que pode ter vários valores associados a ele e também pode ser subdividido em diversos atributos menores (que o compõem).
-  
-  ![Imagem 13](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2013.png)
+**Outra notação para restrição de integridade referencial**  
+A notação para a restrição de integridade referencial pode ser expressa como:
 
-  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
+![Notação para restrição de integridade referencial](https://latex.codecogs.com/png.image?\dpi{110}\bg{black}&space;R1[FK]\rightarrow&space;opR2[PK])
 
-- Nulos
+onde **op** representa a opção de exclusão, dentre as seguintes:
 
-  Pode receber o valor **nulo**, ou seja, podem receber um valor "desconhecido".
-  
-  ![Imagem 14](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2014.png)
+- **Bloqueio (*restrict*)**: Se alguma tupla referencia a tupla a ser excluída, então a exclusão não é efetuada.
+- **Propagação (*cascade*)**: Todas as tuplas que referenciam a tupla a ser excluída são excluídas também, automaticamente.
+- **Substituição por nulos (*set null*) ou *set default***: Todas as tuplas que referenciam a tupla a ser excluída têm os valores dos atributos da chave estrangeira modificados para nulo (se for permitido nulo) ou pelo valor default, respectivamente, e a exclusão é efetuada.
+### Outros Tipos de Restrições
+- **Restrições de integridade semântica**  
+    Especifica **regras de negócio** da aplicação. Essas regras devem ser especificadas nos programas da aplicação.  Podem também ser especificadas por meio de *triggers* e *assertions*, usando a linguagem SQL.
+    Exemplo: O salário de um funcionário não pode ser superior ao salário de seu supervisor.  
+    Exemplo: O gerente de um departamento deve trabalhar para aquele departamento.  
 
-  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
-  
-- Chaves
+- **Dependência funcional**  
+    Especifica que o valor de um conjunto de atributos **X** determina um valor exclusivo para outro conjunto de atributos **Y**.  
+    É usada no processo de normalização de dados.
+    Exemplo: Se sabemos o CPF de um funcionário, podemos determinar exatamente qual é o nome dele.
 
-  Serve como identificador de um objeto, sendo único para cada uma das entidades do conjunto todo de entidades.
-  
-  ![Imagem 15](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2015.png)
+## Operações de atualização
+- **Inserção** (`INSERT`): Insere nova(s) tupla(s) em uma relação. Devemos tomar cuidado com essa operação, pois ela pode violar qualquer dos cinco tipos de restrições discutidas caso não seja feita com cuidado.
+- **Exclusão** (`DELETE`): Exclui determinada(s) tupla(s) de uma relação. Essa operação pode violar somente restrição de integridade referencial, caso não seja feita com cuidado.
+- **Modificação** (`UPDATE` ou `MODIFY`): Altera os valores de alguns atributos em tuplas existentes. Essa operação pode violar qualquer dos cinco tipos de restrições discutidas, dependendo das alterações realizadas.
+	- Modificar um atributo que não é chave primária nem chave estrangeira pode violar **somente as restrições de domínio e de valores nulos**.
+	- Modificar a chave primária é **similar a excluir uma tupla e inserir uma nova no seu lugar,** o que pode resultar na violação de qualquer uma das restrições.
+	- Alterar um atributo de uma chave estrangeira **pode violar a restrição de integridade referencial ou de domínio**, pois pode resultar em referências inválidas a tuplas não existentes.
 
-  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
-  
-  Um tipo entidade pode ter mais de um atributo chave, sendo, cada um, uma chave (de maneira isolada), ou pode ter um atributo chave composto, subdividido em diversos outros atributos, sendo a combinação de todos esses atributos única para cada entidade.
-  
-  ![Imagem 16](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2016.png)
-
-  (Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://youtu.be/w-uUcd227xA?si=cnFS1HVaPDTLmNLI)).
-
-## Relacionamento
-Um **relacionamento** é uma **associação entre entidades** que representa um fato do mundo real.
-
-Já um **tipo relacionamento** define um conjunto de associações entre diferentes tipos entidade. 
-
-Por exemplo, um tipo relacionamento chamado `Matrícula` poderia descrever a associação entre entidades do tipo `Aluno` e entidades do tipo `Curso`, estabelecendo como alunos estão matriculados em cursos. 
-
-Poderíamos descrever também o tipo relacionamento `trabalha_para` entre os tipos entidades `Funcionário` e `Departamento`, que associa cada funcionário com o departamento para o qual ele trabalha. No exemplo abaixo, a cardinalidade (que logo será explicada) aponta que um objeto do tipo `Funcionário` pode trabalhar apenas para um `Departamento`, mas um `Departamento` pode ter vários objetos do tipo `Funcionário` trabalhando para ele.
-
-![Imagem 17](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2017.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira)).
-
-### Grau de um tipo relacionamento
-O grau de um tipo relacionamento é o número de tipos entidades participantes. Assim, no exemplo acima de `trabalha_para` entre `Funcionário` e `Departamento`, temos um grau 2 (binário), por haver apenas dois tipos entidades envolvidos.
-
-![Imagem 18](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2018.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira)).
-Perceba que, na imagem acima, apenas um funcionário se liga a um departamento a partir da relação `trabalha_para`, enquanto um departamento pode se ligar a vários funcionários a partir dessa mesma relação.
-
-Já um relacionamento de grau 3 (ternário) pode ser exemplificado pela relação `Fornece`, envolvendo três entidades: `Fornecedor`, `Projeto` e `Peça`.
-
-![Imagem 19](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2019.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira)).
-Perceba que um fornecedor pode fornecer várias peças a vários projetos, assim, é uma relação *many-to-many-to-many*.
-
-#### Relacionamento ternário
-É um relacionamento que possui três entidades participantes. Para identificar as cardinalidades do relacionamento, é uma boa prática procurar, entre pares de entidade, quais são suas respectivas cardinalidades.
-
-![Imagem 26](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2026.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=SaqrYuiAl8Y&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=16&ab_channel=DenilsonAlvesPereira)).
-
-##### Como mapear um relacionamento ternário para binário?
-Em geral, um tipo relacionamento ternário representa mais informação do que três tipos relacionamento binários.
-
-Nos diagramas abaixo, a diferença se dá pela não-obrigatoriedade, no diagrama da direita, de estipularmos, por exemplo, qual peça um fornecedor está fornecendo e para qual projeto esse fornecimento está sendo feito. Além disso, falta o atributo `Quantidade`!
-
-![Imagem 27](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2027.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=SaqrYuiAl8Y&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=16&ab_channel=DenilsonAlvesPereira)).
-
-A solução para esse problema seria fazer uso de uma entidade fraca (conceito que será mais debatido a seguir). Assim, podemos criar um tipo de entidade fraca sem chaves parciais e com três relacionamentos identificadores, o que tornaria obrigatório, ao estabelecermos uma relação `Fornece`, a identificação explícita de todos os objetos das três entidades participantes.
-
-![Imagem 28](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2028.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=SaqrYuiAl8Y&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=16&ab_channel=DenilsonAlvesPereira)).
-### Relacionamento recursivo
-Um relacionamento é recursivo quando o mesmo tipo entidade (ex: `Funcionário`) participa mais de uma vez de um relacionamento ocupando funções diferentes.
-Assim, o funcionário com o CPF (atributo chave) 123.456.789-00 ocupa a função de supervisor, enquanto outro funcionário, com o CPF 234.567.890-11 ocupa a função de subordinado. Ambos os objetos nascem do mesmo tipo entidade, mas ocupam funções diferentes.
-
-![Imagem 20](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2020.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira)).
-
-Outro exemplo de relacionamento recursivo poderia ser a relação `presta_monitoria` entre dois objetos diferentes do tipo entidade `Aluno`,  um ocupando a função de solicitante e outro de monitor. No contexto da disciplina de Intro. a Sistemas de Bancos de Dados, poderíamos imaginar que, caso houvesse dificuldade com a disciplina, houvesse demanda para que um aluno com maior facilidade no conteúdo da matéria pudesse auxiliar outro(s) aluno(s) a estudar.
-
-### Restrição de cardinalidade
-Tomando como exemplo a relação `trabalha_para` entre o tipo entidade `Funcionário` e o tipo entidade `Departamento`, temos que a cardinalidade de uma relação pode assumir as seguintes configurações:
-- **1:1** - um objeto do tipo entidade `Funcionário` só pode estar associado a, no máximo, um objeto do tipo entidade `Departamento`.
-- **1:N** - um objeto do tipo entidade `Funcionário` pode estar associado a vários objetos do tipo entidade `Departamento`, mas um objeto `Departamento` só pode estar associado a um objeto de `Funcionário`.
-- **M:N** - um objeto do tipo entidade `Funcionário` pode estar associado a vários objetos do tipo entidade `Departamento`, e vice-versa.
-
-![Imagem 21](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2021.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira)).
-
-### Restrição de participação
-Especifica se a existência de uma entidade depende ou não de sua associação a outra entidade através de um relacionamento.
-Cardinalidade mínima: **zero** (parcial) ou **um** (total).
-
-Participação **total**: todos os objetos de um tipo entidade devem participar do relacionamento.
-Participação **zero**: os objetos podem, ou não, participar do relacionamento.
-
-![Imagem 23](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2023.png)
-
-(Imagens do slide do prof. Denilson, disponíveis em suas [videoaulas](https://www.youtube.com/watch?v=KPzgL_4zuxc&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=14&ab_channel=DenilsonAlvesPereira)).
-
-## Entidade fraca
-É um tipo entidade que não tem atributos chave (sem identificação própria). É representada no diagrama pelo retângulo duplo.
-
-![Imagem 24](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2024.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KoBP3n29V0c&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=15&ab_channel=DenilsonAlvesPereira)).
-
-**Esse tipo está sempre associado a pelo menos um tipo entidade forte através de um relacionamento identificador** (representado pelo losango duplo), estando sempre com uma **restrição de participação total** com essa outra entidade.
-
-Sua chave é formada pela combinação de uma chave do tipo entidade forte + uma chave parcial própria do tipo entidade fraca (representada pelo atributo "nome" no diagrama a seguir).
-
-![Imagem 25](https://github.com/gabrafo/Intro-SBDs/blob/main/Anexo/Imagem%2025.png)
-
-(Imagem do slide do prof. Denilson, disponível em suas [videoaulas](https://www.youtube.com/watch?v=KoBP3n29V0c&list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n&index=15&ab_channel=DenilsonAlvesPereira)).
-
-Não devemos, nunca, adicionar uma chave do tipo entidade forte (como "cpf", por exemplo) como atributo do tipo entidade fraca, pois o relacionamento identificador já aponta onde está a chave forte da entidade.
-
-## Diretrizes para escolha de nomes
-**Entidades**: substantivos.
-**Relacionamentos**: verbos.
-
-Geralmente, as leituras de diagrama ER são feitas de esquerda para a direita, de cima para baixo, então é bom se atentar a isso.
