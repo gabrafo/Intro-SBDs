@@ -226,8 +226,8 @@ nomeCliente, codVendedor, nomeVendedor, descricaoProduto, precoVendaProduto).
 
 Já está na 1FN, preciso passar para a 2FN.
 
-![Exercício 1: a](https://imgur.com/a/i5r3F5f)
+[*Upload* do exercício 1, letra A](https://imgur.com/a/i5r3F5f).
 
 Agora, passando da 2FN para a 3FN...
 
-![Exercício 1: b](https://imgur.com/YSqImoO)
+[*Upload* do exercício 1, letra B](https://imgur.com/YSqImoO).
