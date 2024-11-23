@@ -241,4 +241,6 @@ Passando a tabela para a 1FN e, consequentemente, 2FN...
 
 ![*Upload do exercício 2, letra A e B](https://prnt.sc/9_U4Qcp1njOm)
 
+Passando a tabela para a 3FN...
 
+![*Upload do exercício 2, letra C](https://prnt.sc/K9V0zQxUitQu)
