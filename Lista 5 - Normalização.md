@@ -231,3 +231,14 @@ Já está na 1FN, preciso passar para a 2FN.
 Agora, passando da 2FN para a 3FN...
 
 [*Upload* do exercício 1, letra B](https://imgur.com/YSqImoO).
+
+## Exercício 2
+
+`Aluno (numMatricula, nomeAluno, codCurso, nomeCurso, {codDisciplina, nomeDisciplina, cargaHorariaDisc, anoSemestreCursada, codProfessorDisciplina, nomeProfessor, notaDisciplina, frequenciaDisciplina})`.
+No esquema, os metacaracteres { e } indicam repetição. Assim, o esquema não está na 1a Forma Normal. A ideia é passá-lo, inicialmente, para a 1FN.
+
+Passando a tabela para a 1FN e, consequentemente, 2FN...
+
+![*Upload do exercício 2, letra A e B](https://prnt.sc/9_U4Qcp1njOm)
+
+
