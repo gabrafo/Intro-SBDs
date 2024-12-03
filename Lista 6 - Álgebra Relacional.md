@@ -35,3 +35,10 @@ de nome ‘ Construção’
 `idProjetoTmp = π idProj (Projeto * idConstrucaoTmp)`
 
 `result = π nome (Funcionario * idProjetoTmp)`
+
+- Selecione o nome dos funcionários supervisionados pelo funcionário de nome ‘Frank T.
+Santos’.
+
+**R:** `idFrankTmp = π idFunc [σ nomeFunc = Frank T. Santos (Funcionario)]`
+
+`result = π nome [σ idFrankTmp.idFunc = Funcionario.idSuperv (idFrankTmp x Funcionario)]`
