@@ -50,6 +50,7 @@ Santos’.
 `result = π nome, endereco (sem_dependentes * Funcionario)`
 
 - Selecione o nome dos funcionários que trabalham no departamento de nome ‘Pesquisa’ ou que trabalham no projeto de nome ‘N. Benefícios’.
+
 **R:** `idPesquisaTmp = π idDepto [σ nomeDepto = Pesquisa (Departamento)]`
 
 `idNBeneficiosTmp = π idProj [σ nomeProj =  N. Benefícios(Projeto)]`
