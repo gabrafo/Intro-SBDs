@@ -51,7 +51,7 @@ WHERE nomeDepto = "Construção";
 ```sql
 SELECT F.nomeFunc
 FROM Funcionario AS F
-INNER JOIN Funcionario AS S
+CROSS JOIN Funcionario AS S
 WHERE F.idSuperv = S.idFunc AND S.nomeFunc = "Frank T. Santos";
 ```
 
@@ -60,10 +60,10 @@ WHERE F.idSuperv = S.idFunc AND S.nomeFunc = "Frank T. Santos";
 SELECT nomeFunc, endereco
 FROM Funcionario
 WHERE idFunc NOT IN (
-	SELECT idFunc
+    SELECT idFunc
     FROM Dependente
     WHERE idFunc IS NOT NULL
-    );
+);
 ```
 
 ou
@@ -72,15 +72,68 @@ ou
 SELECT Funcionario.nomeFunc, Funcionario.endereco
 FROM Funcionario
 LEFT JOIN Dependente
-ON Funcionario.idFunc = Dependente.idFunc
+    ON Funcionario.idFunc = Dependente.idFunc
 WHERE Dependente.idFunc IS NULL;
 ```
 
  8. Selecione o nome dos funcionários que trabalham no departamento de nome ‘Pesquisa’ ou que trabalham no projeto de nome ‘N. Benefícios’.
+```sql
+SELECT DISTINCT F.nomeFunc
+FROM Funcionario AS F
+NATURAL JOIN Trabalha AS T
+NATURAL JOIN Departamento AS D
+NATURAL JOIN Projeto AS P
+WHERE P.nomeProj = "N. Benefícios" OR D.nomeDepto = "Pesquisa";
+```
 
  9. Selecione o nome dos funcionários que trabalham em algum projeto controlado pelo departamento cujo gerente é o funcionário de nome ‘Júnia B. Mendes’.
+```sql
+SELECT DISTINCT nomeFunc
+FROM Funcionario AS F
+NATURAL JOIN Trabalha AS T
+INNER JOIN Projeto AS P
+	ON P.idProj = T.idProj
+INNER JOIN Departamento AS D
+	ON D.idDepto = P.idDepto
+WHERE D.idGerente = (
+    SELECT F.idFunc
+    FROM Funcionario AS F
+    WHERE F.nomeFunc = "Júnia B. Mendes"
+)
+AND F.nomeFunc != "Júnia B. Mendes";
+```
 
  10. Selecione o nome dos funcionários que trabalham em todos os projetos controlados pelo departamento cujo gerente é o funcionário de nome ‘Júnia B. Mendes’.
+```sql
+WITH DepartamentoGerenciado AS (
+    SELECT D.idDepto
+    FROM Departamento AS D
+    WHERE D.idGerente = (
+        SELECT F.idFunc
+        FROM Funcionario AS F
+        WHERE F.nomeFunc = "Júnia B. Mendes"
+    )
+)
+
+SELECT F.nomeFunc
+FROM Funcionario AS F
+NATURAL JOIN Trabalha AS T
+INNER JOIN Projeto AS P
+	ON P.idProj = T.idProj
+INNER JOIN Departamento AS D
+	ON D.idDepto = P.idDepto
+WHERE D.idGerente = (
+	SELECT F.idFunc
+	FROM Funcionario AS F
+	WHERE F.nomeFunc = "Júnia B. Mendes"
+)
+GROUP BY F.idFunc
+HAVING COUNT(DISTINCT P.idProj) = (
+	SELECT COUNT(DISTINCT P2.idProj)
+    FROM Projeto AS P2
+    WHERE P2.idDepto = (SELECT idDepto FROM DepartamentoGerenciado)
+);
+```
 
  11. Selecione o nome dos funcionários e o nome de seus dependentes. Deve incluir o nome dos funcionários sem dependentes.
 
