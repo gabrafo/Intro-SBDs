@@ -136,8 +136,25 @@ HAVING COUNT(DISTINCT P.idProj) = (
 ```
 
  11. Selecione o nome dos funcionários e o nome de seus dependentes. Deve incluir o nome dos funcionários sem dependentes.
+```sql
+SELECT F.nomeFunc, D.nomeDep
+FROM Funcionario AS F
+LEFT JOIN Dependente AS D
+	ON F.idFunc = D.idFunc;
+```
 
  12. Selecione a quantidade de funcionários que trabalham no departamento que controla o projeto de nome ‘ProdZ’.
+```sql
+SELECT COUNT(DISTINCT F.idFunc)
+FROM Funcionario AS F
+INNER JOIN Departamento AS D
+	ON F.idDepto = (
+    SELECT idDepto
+	FROM Departamento
+	NATURAL JOIN Projeto AS P
+	WHERE P.nomeProj = "ProdZ"
+);
+```
 
  13. Selecione o nome dos funcionários e a quantidade de projetos que cada um trabalha mais de 10 horas.
 
