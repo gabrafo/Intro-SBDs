@@ -11,12 +11,13 @@ Este repositório é dedicado à disciplina GCC 263 - Introdução a Sistemas de
 
 - **Videoaulas**: Acesse a playlist completa no YouTube: [Videoaulas do Professor Denilson Alves Pereira](https://www.youtube.com/playlist?list=PLpAVc-5L0TX-ryMY_4nN8f2BT28Wp_O_n)
 - **Livro-Texto**: Elmasri, R., & Navathe, S. B. (6ª edição). *Sistemas de Banco de Dados*.
+- **Trabalho Prático**: [Trabalho prático](https://github.com/gabrafo/Projeto-IntroSistemasBD) da disciplina, realizado por mim e outros alunos.
 
 ## Estrutura do Repositório
 ├── Anexo<br>
 │    └── Imagens das anotações<br>
 └── Anotações<br>
-&nbsp;&nbsp;&nbsp;&nbsp;└── Anotações Markdown<br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── Anotações<br>
 
 ## Contribuições
 
